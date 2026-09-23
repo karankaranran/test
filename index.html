@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="珠姿フラッシュ">
+<title>そろばん珠姿フラッシュ</title>
+<style>
+  :root{
+    --bg:#f6f3ed; --panel:#fff; --ink:#222; --muted:#6a6a6a;
+    --accent:#2f6f5f; --danger:#a33a3a;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Yu Gothic",sans-serif;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  }
+  .wrap{max-width:760px;margin:auto;padding:14px 14px 34px}
+  h1{font-size:22px;margin:4px 0}
+  .sub{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .panel{
+    background:var(--panel);border-radius:18px;padding:14px;
+    box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:12px;
+  }
+  .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}
+  select,input{
+    width:100%;font:inherit;font-size:17px;padding:11px 12px;
+    border:1px solid #ccc;border-radius:12px;background:#fff;color:var(--ink)
+  }
+  .checkrow{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px}
+  .checkrow label{display:inline;color:var(--ink);font-size:14px}
+  .stage{
+    min-height:300px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:9px;text-align:center;
+  }
+  .message{min-height:28px;font-weight:700;font-size:18px}
+  #abacusBox{
+    width:100%;
+    height:190px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:visible;
+  }
+  #abacusSvg{
+    height:180px;
+    width:auto;
+    max-width:92vw;
+    display:block;
+  }
+  .hiddenSvg{visibility:hidden}
+  .answer-area{display:grid;grid-template-columns:1fr auto;gap:8px;width:min(430px,100%)}
+  .keypad{
+    width:min(430px,100%);
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+  .keypad-disabled{
+    opacity:.5;
+    pointer-events:none;
+  }
+  .key{
+    min-height:48px;
+    font:inherit;
+    font-size:20px;
+    font-weight:700;
+    border:0;
+    border-radius:13px;
+    background:#ececec;
+    color:#222;
+  }
+  .key-func{
+    background:#dcdcdc;
+  }
+  button{
+    font:inherit;font-weight:700;border:0;border-radius:13px;
+    padding:12px 15px;background:var(--accent);color:white;min-height:46px
+  }
+  button.secondary{background:#777}
+  button.ghost{background:#ececec;color:#222}
+  button:disabled{opacity:.45}
+  .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+  .stats{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+  .ok{color:var(--accent)} .ng{color:var(--danger)}
+  .help{font-size:12px;color:var(--muted);line-height:1.6}
+
+  @media(max-width:520px){
+    .wrap{padding-top:8px}
+    h1{font-size:19px}
+    .sub{font-size:12px;margin-bottom:8px}
+    .panel{padding:10px;margin-bottom:8px;border-radius:14px}
+    .stage{min-height:290px}
+    #abacusBox{width:100%;height:180px}
+    #abacusSvg{height:170px;max-width:90vw}
+    .message{font-size:16px;min-height:24px}
+    button{min-height:42px;padding:10px 14px}
+    .key{min-height:44px;font-size:19px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>そろばん珠姿フラッシュ</h1>
+  <div class="sub">1〜4桁。珠姿だけを短時間表示し、自動で消します。</div>
+
+  <div class="panel">
+    <div class="controls">
+      <label>桁数
+        <select id="digits">
+          <option value="1">1桁</option>
+          <option value="2">2桁</option>
+          <option value="3">3桁</option>
+          <option value="4">4桁</option>
+        </select>
+      </label>
+      <label>表示時間
+        <select id="duration">
+          <option value="300">0.3秒</option>
+          <option value="500">0.5秒</option>
+          <option value="800">0.8秒</option>
+          <option value="1000">1.0秒</option>
+          <option value="1500" selected>1.5秒</option>
+          <option value="2000">2.0秒</option>
+          <option value="3000">3.0秒</option>
+          <option value="5000">5.0秒</option>
+        </select>
+      </label>
+    </div>
+    <div class="checkrow">
+      <input id="leadingZero" type="checkbox">
+      <label for="leadingZero">先頭の0も出す</label>
+    </div>
+  </div>
+
+  <div class="panel stage">
+    <div class="buttons">
+      <button id="start">出題</button>
+      <button id="next" class="secondary" disabled>次の問題</button>
+    </div>
+
+    <div id="message" class="message">まず表示見本「8」を確認してください</div>
+
+    <div id="abacusBox">
+      <svg id="abacusSvg" viewBox="0 0 180 270" role="img" aria-label="そろばん">
+        <rect x="6" y="6" width="168" height="250" rx="14" fill="#efe3d2" stroke="#5a4638" stroke-width="12"/>
+        <line x1="90" y1="18" x2="90" y2="244" stroke="#9b8b78" stroke-width="3"/>
+        <rect x="12" y="94" width="156" height="14" fill="#4c382d"/>
+        <ellipse cx="90" cy="82" rx="22" ry="12" fill="#d8a15b" stroke="#8a6234" stroke-width="2"/>
+        <ellipse cx="90" cy="120" rx="22" ry="12" fill="#d8a15b" stroke="#8a6234" stroke-width="2"/>
+        <ellipse cx="90" cy="144" rx="22" ry="12" fill="#d8a15b" stroke="#8a6234" stroke-width="2"/>
+        <ellipse cx="90" cy="168" rx="22" ry="12" fill="#d8a15b" stroke="#8a6234" stroke-width="2"/>
+        <ellipse cx="90" cy="226" rx="22" ry="12" fill="#d8a15b" stroke="#8a6234" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div class="answer-area">
+      <input id="answer" type="text" inputmode="none" pattern="[0-9]*" autocomplete="off"
+             placeholder="答えを入力" disabled readonly>
+      <button id="check" disabled>答え合わせ</button>
+    </div>
+
+    <div id="keypad" class="keypad keypad-disabled" aria-label="数字入力ボタン">
+      <button type="button" class="key" data-key="7">7</button>
+      <button type="button" class="key" data-key="8">8</button>
+      <button type="button" class="key" data-key="9">9</button>
+      <button type="button" class="key" data-key="4">4</button>
+      <button type="button" class="key" data-key="5">5</button>
+      <button type="button" class="key" data-key="6">6</button>
+      <button type="button" class="key" data-key="1">1</button>
+      <button type="button" class="key" data-key="2">2</button>
+      <button type="button" class="key" data-key="3">3</button>
+      <button type="button" class="key key-func" data-key="clear">C</button>
+      <button type="button" class="key" data-key="0">0</button>
+      <button type="button" class="key key-func" data-key="back">⌫</button>
+    </div>
+
+    <div class="buttons">
+      <button id="reveal" class="ghost" disabled>珠姿を再表示</button>
+    </div>
+
+    <div class="stats">
+      <span>正解 <b id="correct">0</b></span>
+      <span>問題 <b id="attempts">0</b></span>
+      <span>連続 <b id="streak">0</b></span>
+    </div>
+  </div>
+
+  <div class="panel help">
+    v6：iPhoneでキーボード入力が面倒にならないよう、電卓風の数字ボタンUIを追加しました。Cで全消去、⌫で1文字削除できます。
+    上珠・下珠とも「有効なら梁にぴったり接触」します。
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const digitsEl=$('digits'), durationEl=$('duration'), leadingZeroEl=$('leadingZero');
+  const svg=$('abacusSvg'), message=$('message'), answer=$('answer'), check=$('check');
+  const start=$('start'), reveal=$('reveal'), next=$('next'), keypad=$('keypad');
+  const correctEl=$('correct'), attemptsEl=$('attempts'), streakEl=$('streak');
+
+  let current='8', timer=null, answered=false;
+  let stats={correct:0,attempts:0,streak:0};
+
+  function randInt(max){ return Math.floor(Math.random()*max); }
+
+  function makeNumberString(){
+    const n=Number(digitsEl.value);
+    let s='';
+    for(let i=0;i<n;i++){
+      let d;
+      if(i===0 && n>1 && !leadingZeroEl.checked) d=1+randInt(9);
+      else d=randInt(10);
+      s+=String(d);
+    }
+    return s;
+  }
+
+  function bead(cx, cy){
+    return `<ellipse cx="${cx}" cy="${cy}" rx="22" ry="12" fill="#d8a15b" stroke="#8a6234" stroke-width="2"/>`;
+  }
+
+  function render(s, showDigits=false){
+    const n=s.length;
+    const colW=58;
+    const innerW=Math.max(80, n*colW);
+    const totalW=innerW+24;
+    const left=12;
+    const frameH=250, beamY=94, beamH=14;
+    const rodTop=18, rodBottom=244;
+
+    svg.setAttribute('viewBox', `0 0 ${totalW} 270`);
+
+    let out = `<rect x="6" y="6" width="${totalW-12}" height="${frameH}" rx="14"
+                   fill="#efe3d2" stroke="#5a4638" stroke-width="12"/>`;
+    out += `<rect x="12" y="${beamY}" width="${totalW-24}" height="${beamH}" fill="#4c382d"/>`;
+
+    for(let i=0;i<n;i++){
+      const d=Number(s[i]);
+      const cx=left + colW*(i+0.5);
+
+      out += `<line x1="${cx}" y1="${rodTop}" x2="${cx}" y2="${rodBottom}"
+                    stroke="#9b8b78" stroke-width="3"/>`;
+
+      out += bead(cx, d>=5 ? 82 : 42);
+
+      const active=d%5;
+
+      for(let j=0;j<active;j++){
+        out += bead(cx, 120 + 24*j);
+      }
+
+      const inactiveCount=4-active;
+      for(let j=0;j<inactiveCount;j++){
+        out += bead(cx, 226 - 24*j);
+      }
+
+      if(showDigits){
+        out += `<text x="${cx}" y="266" text-anchor="middle"
+                     font-family="-apple-system,BlinkMacSystemFont,sans-serif"
+                     font-size="14" fill="#666">${s[i]}</text>`;
+      }
+    }
+    svg.innerHTML=out;
+  }
+
+  function showTimed(){
+    svg.classList.remove('hiddenSvg');
+    message.textContent='見てください';
+
+    requestAnimationFrame(() => {
+      document.getElementById('abacusBox').scrollIntoView({
+        behavior: 'auto',
+        block: 'nearest'
+      });
+    });
+
+    clearTimeout(timer);
+    timer=setTimeout(()=>{
+      svg.classList.add('hiddenSvg');
+      message.textContent='珠姿を思い出して答えてください';
+      answer.disabled=false;
+      check.disabled=false;
+      setKeypadEnabled(true);
+    },Number(durationEl.value));
+  }
+
+  function newQuestion(){
+    answered=false;
+    current=makeNumberString();
+    render(current,false);
+    answer.value='';
+    answer.disabled=true;
+    check.disabled=true;
+    setKeypadEnabled(false);
+    reveal.disabled=true;
+    next.disabled=true;
+    start.disabled=true;
+    showTimed();
+  }
+
+  function normalize(v){
+    v=v.replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0)).replace(/\D/g,'');
+    if(leadingZeroEl.checked) return v.padStart(current.length,'0');
+    return String(Number(v||'0'));
+  }
+
+  function expected(){
+    return leadingZeroEl.checked ? current : String(Number(current));
+  }
+
+  function setKeypadEnabled(enabled){
+    keypad.classList.toggle('keypad-disabled', !enabled);
+  }
+
+  function handlePadInput(kind){
+    if(answer.disabled) return;
+    if(kind === 'clear'){
+      answer.value = '';
+      return;
+    }
+    if(kind === 'back'){
+      answer.value = answer.value.slice(0, -1);
+      return;
+    }
+    const limit = current.length + 2;
+    if(answer.value.length < limit){
+      answer.value += kind;
+    }
+  }
+
+  function checkAnswer(){
+    if(answered) return;
+    answered=true;
+    stats.attempts++;
+    const ok=normalize(answer.value)===expected();
+
+    if(ok){
+      stats.correct++; stats.streak++;
+      message.innerHTML=`<span class="ok">正解：${current}</span>`;
+    }else{
+      stats.streak=0;
+      message.innerHTML=`<span class="ng">不正解　正解：${current}</span>`;
+    }
+
+    render(current,true);
+    svg.classList.remove('hiddenSvg');
+    answer.disabled=true; check.disabled=true;
+    setKeypadEnabled(false);
+    reveal.disabled=false; next.disabled=false; start.disabled=false;
+    correctEl.textContent=stats.correct;
+    attemptsEl.textContent=stats.attempts;
+    streakEl.textContent=stats.streak;
+  }
+
+  function showAgain(){
+    render(current,true);
+    svg.classList.remove('hiddenSvg');
+    message.textContent='珠姿を確認';
+  }
+
+  start.addEventListener('click',newQuestion);
+  next.addEventListener('click',newQuestion);
+  check.addEventListener('click',checkAnswer);
+  reveal.addEventListener('click',showAgain);
+  answer.addEventListener('keydown',e=>{
+    if(e.key==='Enter' && !check.disabled) checkAnswer();
+  });
+
+  keypad.querySelectorAll('[data-key]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      handlePadInput(btn.dataset.key);
+    });
+  });
+
+  setKeypadEnabled(false);
+  render('8',false);
+})();
+</script>
+</body>
+</html>
