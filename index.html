@@ -581,8 +581,9 @@
           mistakes.push(item);ids.add(item.id);count++;
         }
         mistakes.sort((a,b)=>b.recordedAt.localeCompare(a.recordedAt));
-        persist();refreshHistory();
-        notice(`JSONを読み込み、${count}件を追加しました（重複${incoming.length-count}件）。`);
+        const saved=persist();refreshHistory();
+        if(saved) notice(`JSONを読み込み、${count}件を追加しました（重複${incoming.length-count}件）。`);
+        else notice(`JSONから${count}件を読み込みましたが、ブラウザへ保存できませんでした。この画面を閉じる前にJSONを出力してください。`,true);
       }catch(err){
         notice('JSONを読み込めませんでした：'+err.message,true);
       }finally{
