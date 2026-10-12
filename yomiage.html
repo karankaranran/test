@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>そろばん 読上算トレーナー v2</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142034;--panel2:#1b2a40;--line:#304157;--txt:#f0f5fd;--muted:#aabbd1;--teal:#78e2cb;--teal2:#1d877a;--warning:#f7ce84;--bad:#ffa3a3}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;background:radial-gradient(ellipse at 20% 0%,#173448 0%,#0b1220 48%) fixed;color:var(--txt);min-height:100vh;line-height:1.5}
+main{width:min(760px,100%);margin:0 auto;padding:24px 18px 72px}.top{display:flex;align-items:center;gap:12px;margin-bottom:23px}.brand{width:46px;height:46px;border-radius:14px;background:#1f4d54;display:grid;place-items:center;color:var(--teal);font-size:26px;font-weight:bold;letter-spacing:-3px}.overline{font-size:12px;letter-spacing:.12em;color:var(--teal);font-weight:700}.top h1{font-size:23px;margin:0;letter-spacing:.02em}.lead{color:var(--muted);font-size:14px;margin:8px 0 20px}.panel{background:linear-gradient(140deg,rgba(29,45,67,.95),rgba(17,29,47,.96));border:1px solid var(--line);box-shadow:0 10px 24px rgba(0,0,0,.12);border-radius:20px;padding:20px;margin-bottom:17px}
+.hero{padding:25px 20px 20px;text-align:center}.eyebrow{color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}.status{font-size:21px;font-weight:800;margin:8px auto 2px;min-height:32px}.substatus{font-size:13px;color:var(--muted);min-height:22px;margin-bottom:20px}.bigcount{font-size:clamp(58px,16vw,92px);letter-spacing:-.04em;font-variant-numeric:tabular-nums;font-weight:800;line-height:1.12;margin:0 0 12px}.bigcount small{font-size:.25em;letter-spacing:.01em;color:var(--muted);font-weight:600;margin-left:8px}.meter{display:flex;gap:5px;justify-content:center;max-width:470px;margin:0 auto 24px}.dot{height:7px;flex:1;background:#384b5c;border-radius:99px;transition:background .12s}.dot.done{background:var(--teal2)}.dot.current{background:var(--teal);box-shadow:0 0 9px #5fe1c361}
+.btnrow{display:grid;grid-template-columns:2fr 1fr;gap:10px}.btn{border:0;border-radius:14px;min-height:54px;padding:12px 17px;font-size:16px;font-weight:800;cursor:pointer;touch-action:manipulation;color:var(--txt);background:#33465b}.btn.primary{color:#082320;background:var(--teal)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--teal);outline-offset:2px}.btn.secondary{background:#30445b}.btn.ghost{background:transparent;border:1px solid var(--line);font-size:14px;min-height:44px}.btn:active{transform:translateY(1px)}
+.sectionTitle{margin:0 0 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:16px;font-weight:800}.muted{color:var(--muted)}.small{font-size:12px}.settings{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}.field{min-width:0}.field.wide{grid-column:1/-1}.field label{display:block;font-size:12px;font-weight:700;color:#c7d5e6;margin-bottom:7px}.field select,.field input[type="number"],#answerInput{display:block;width:100%;background:#0c1728;color:var(--txt);border:1px solid #3e5267;border-radius:10px;height:45px;padding:0 12px;font-size:16px;appearance:auto}.field input[type="range"]{width:100%;accent-color:var(--teal);height:30px}.detail{font-size:12px;color:var(--muted)}.inline{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.switch{display:flex;align-items:center;gap:12px;color:var(--txt);font-size:13px}.switch input{width:19px;height:19px;accent-color:var(--teal)}
+.answerRow{display:grid;grid-template-columns:1fr auto;gap:8px}.answerRow input{height:51px!important;font-size:23px!important;font-variant-numeric:tabular-nums}.result{border-radius:12px;background:var(--panel2);padding:14px;margin-top:13px;display:none}.result.show{display:block}.result.good{border:1px solid #3bc5a2}.result.bad{border:1px solid #c67d76}.result h3{margin:0 0 4px;font-size:16px}.result p{margin:0;color:var(--muted);font-size:13px}.numlist{display:none;margin-top:12px;border-top:1px solid var(--line);padding-top:10px}.numlist.show{display:block}.tokens{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}.token{background:#243a4d;border:1px solid #39586b;border-radius:8px;padding:5px 9px;font-size:14px;font-variant-numeric:tabular-nums}.warn{border-left:3px solid var(--warning);padding:7px 10px;margin-top:12px;color:#ecddb9;background:#402f213d;font-size:12px;display:none}.warn.show{display:block}.hint{font-size:12px;color:var(--muted);padding:0 4px}.link{color:#9fe4d8;text-decoration:underline;cursor:pointer}.footer{text-align:center;color:#859bb2;font-size:11px;margin-top:20px}.hide{display:none!important}@media(max-width:380px){.panel{padding:16px}.hero{padding:23px 15px}.settings{gap:12px 10px}.top h1{font-size:20px}}
+</style>
+</head>
+<body>
+<main>
+ <div class="top"><div class="brand" aria-hidden="true">算</div><div><div class="overline">SOROBAN AUDIO TRAINER · v2</div><h1>読み上げ算トレーナー</h1></div></div>
+ <p class="lead">耳で聴いて、実物のそろばんを弾くための練習アプリ。出題中の数字は表示しません。</p>
+ <section class="panel hero" aria-label="練習操作">
+  <div class="eyebrow" id="presetLabel">2桁 × 10口 · 足し算</div>
+  <div class="status" id="status" aria-live="polite">準備完了</div>
+  <div class="substatus" id="substatus">「出題する」を押して始めます</div>
+  <div class="bigcount" id="count">0<small>/ 10口</small></div>
+  <div class="meter" id="meter" aria-hidden="true"></div>
+  <div class="btnrow"><button class="btn primary" id="playBtn" type="button">▶ 出題する</button><button class="btn secondary" id="stopBtn" disabled type="button">■ 中止</button></div>
+  <div class="warn" id="warning" role="alert"></div>
+ </section>
+ <section class="panel" id="answerPanel">
+  <h2 class="sectionTitle">答え合わせ <span class="small muted">出題が終わったら入力</span></h2>
+  <div class="answerRow"><input type="number" id="answerInput" placeholder="答えを入力" inputmode="numeric" autocomplete="off" aria-label="計算結果" disabled><button class="btn secondary" type="button" id="checkBtn" disabled>判定</button></div>
+  <div id="result" class="result" role="status"></div>
+  <div class="inline" style="margin-top:12px"><button type="button" class="btn ghost" id="showNumbers" disabled>問題を表示</button><button type="button" class="btn ghost" id="repeatBtn" disabled>同じ問題を再生</button></div>
+  <div id="numlist" class="numlist"></div>
+ </section>
+ <section class="panel" id="settingsPanel">
+  <h2 class="sectionTitle">練習設定 <span class="small muted">変更は次の出題から</span></h2>
+  <div class="settings">
+   <div class="field"><label for="digits">桁数</label><select id="digits"><option value="1">1桁</option><option value="2" selected>2桁</option><option value="3">3桁</option></select></div>
+   <div class="field"><label for="items">口数</label><select id="items"><option value="5">5口</option><option value="10" selected>10口</option><option value="15">15口</option><option value="20">20口</option></select></div>
+   <div class="field"><label for="interval">読み始めの間隔</label><select id="interval"><option value="2.4">2.4秒</option><option value="2.8">2.8秒</option><option value="3.2" selected>3.2秒</option><option value="3.6">3.6秒</option><option value="4.0">4.0秒</option><option value="4.5">4.5秒</option><option value="5.0">5.0秒</option><option value="6.0">6.0秒</option></select></div>
+   <div class="field"><label for="timing">テンポ方式</label><select id="timing"><option value="beat" selected>一定テンポ</option><option value="gap">読み終わり後の休止</option></select></div>
+   <div class="field"><label for="mode">計算</label><select id="mode"><option value="add" selected>足し算のみ</option><option value="mixed">足し算＋引き算</option></select></div>
+   <div class="field"><label for="speed">声の速さ <span id="rateValue">1.0倍</span></label><input type="range" id="speed" min="0.75" max="1.4" step="0.05" value="1"></div>
+   <div class="field wide"><label for="voice">日本語の声</label><select id="voice"><option value="">端末の日本語音声を使用</option></select><div class="detail">声の選択肢は端末・ブラウザによって異なります。</div></div>
+   <div class="field wide"><div class="inline"><label class="switch"><input id="intro" type="checkbox" checked>「御破算で願いましては」で開始</label><label class="switch"><input id="spokenEnd" type="checkbox" checked>終わりに「では」</label></div></div>
+   <div class="field wide"><div class="inline"><button type="button" class="btn ghost" id="voiceTest">🔊 音声テスト</button><button type="button" class="btn ghost" id="resetSettings">初期設定に戻す</button></div></div>
+  </div>
+  <p class="hint" style="margin:16px 0 0">読み方：各数字の末尾に「円なり」を付けます。加減算は符号が切り替わるときだけ「加えて」「引いては」と読みます。</p>
+  <p class="hint" style="margin:10px 0 0">一定テンポ：数字の読み始めを設定間隔に近づけます。声が長い場合は重ねず、終了を待ちます。<br>休止方式：各数字を読み終えてから設定秒数だけ待ちます。</p>
+ </section>
+ <p class="hint">iPhoneのSafariでは「出題する」か「音声テスト」を直接タップしてください。端末の音量を上げ、画面を開いたまま練習してください。音声エンジンによる発声開始のばらつきは完全には取り除けません。</p>
+ <div class="footer">端末の日本語音声を使用 · ネット接続・ログイン不要 · 問題は端末内で生成</div>
+</main>
+<script>
+'use strict';
+(function(){
+ const $=id=>document.getElementById(id);
+ const elements=['digits','items','interval','timing','mode','speed','voice','intro','spokenEnd'];
+ const settingsDefaults={digits:'2',items:'10',interval:'3.2',timing:'beat',mode:'add',speed:'1',voice:'',intro:true,spokenEnd:true};
+ const synth=window.speechSynthesis;
+ let question=null,phase='idle',cursor=0,session=0,timer=null,guard=null,utter=null,baseStart=null,delayEvents=[],wakeLock=null,voices=[];
+ let speakActive=false; // Guard against stale speech callbacks
+ function saveSettings(){let obj={};for(const id of elements)obj[id]=$(id).type==='checkbox'?$(id).checked:$(id).value;try{localStorage.setItem('soroban-reader-settings-v1',JSON.stringify(obj))}catch(_){} }
+ function loadSettings(){let data={};try{data=JSON.parse(localStorage.getItem('soroban-reader-settings-v1')||'{}')||{}}catch(_){};for(const id of elements){const e=$(id);const val=(data[id]!==undefined)?data[id]:settingsDefaults[id];if(e.type==='checkbox')e.checked=!!val;else if(id!=='voice')e.value=String(val)}$('speed').dispatchEvent(new Event('input'));refreshPreset();return data.voice||''}
+ let preferredVoice='';
+ function refreshVoices(){if(!synth)return;const prev=$('voice').value||preferredVoice;voices=synth.getVoices().filter(v=>/^ja(?:-|_)/i.test(v.lang)||v.lang==='ja');$('voice').replaceChildren();let opt=document.createElement('option');opt.value='';opt.textContent='端末の日本語音声を使用';$('voice').appendChild(opt);for(const v of voices){let o=document.createElement('option');o.value=v.voiceURI;o.textContent=v.name+(v.localService?'（端末内）':'');$('voice').appendChild(o)}$('voice').value=voices.some(v=>v.voiceURI===prev)?prev:'';preferredVoice=$('voice').value;}
+ function getConfig(){return{digits:Number($('digits').value),items:Number($('items').value),interval:Number($('interval').value),timing:$('timing').value,mode:$('mode').value,rate:Number($('speed').value),intro:$('intro').checked,spokenEnd:$('spokenEnd').checked,voice:$('voice').value}}
+ function refreshPreset(){const c=getConfig();$('presetLabel').textContent=`${c.digits}桁 × ${c.items}口 · ${c.mode==='add'?'足し算':'加減算'}`;if(phase==='idle')$('count').innerHTML=`0<small>/ ${c.items}口</small>`;}
+ function randint(max){if(window.crypto&&crypto.getRandomValues){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%max}return Math.floor(Math.random()*max)}
+ function generate(c){const lo=c.digits===1?1:10**(c.digits-1),hi=10**c.digits-1;const ops=[];let sum=0;for(let i=0;i<c.items;i++){let neg=false;let num=lo+randint(hi-lo+1);if(c.mode==='mixed'&&i>0&&sum>=lo+1&&randint(100)<35){const maxSub=Math.min(hi,sum);if(maxSub>=lo){num=lo+randint(maxSub-lo+1);neg=true}}sum+=neg?-num:num;ops.push({num,neg})}return{ops,sum,c}}
+ const kana=['ゼロ','いち','に','さん','よん','ご','ろく','なな','はち','きゅう'];
+ function japNum(n){if(n===0)return kana[0];if(n<10)return kana[n];let s='';if(n>=100){const h=Math.floor(n/100);s+=h===1?'ひゃく':h===3?'さんびゃく':h===6?'ろっぴゃく':h===8?'はっぴゃく':kana[h]+'ひゃく';n%=100}if(n>=10){const t=Math.floor(n/10);s+=t===1?'じゅう':kana[t]+'じゅう';n%=10}if(n>0)s+=kana[n];return s}
+ function readOp(op,i){let prefix='';if(i>0&&op.neg!==question.ops[i-1].neg)prefix=op.neg?'ひいては、':'くわえて、';return prefix+japNum(op.num)+'えんなり'}
+ function setStatus(text,sub=''){$('status').textContent=text;$('substatus').textContent=sub}
+ function setWarning(msg){$('warning').textContent=msg;$('warning').classList.toggle('show',!!msg)}
+ function renderMeter(total,index){$('meter').replaceChildren();for(let i=0;i<total;i++){let d=document.createElement('span');d.className='dot'+(i<index?' done':'')+(i===index&&phase==='playing'?' current':'');$('meter').appendChild(d)}}
+ function setCount(current,total){$('count').innerHTML=`${current}<small>/ ${total}口</small>`;renderMeter(total,current>=total?total:current)}
+ function buttonState(){const running=phase==='playing';$('playBtn').disabled=running;$('playBtn').textContent=phase==='idle'?'▶ 出題する':'▶ 新しい問題';$('stopBtn').disabled=!running;$('answerInput').disabled=phase!=='finished';$('checkBtn').disabled=phase!=='finished';$('showNumbers').disabled=phase==='idle'||running;$('repeatBtn').disabled=!question||running;}
+ function clearTimers(){if(timer!==null){clearTimeout(timer);timer=null}if(guard!==null){clearTimeout(guard);guard=null}}
+ function releaseWake(){try{if(wakeLock){wakeLock.release();wakeLock=null}}catch(_){wakeLock=null}}
+ async function keepAwake(){if(!navigator.wakeLock?.request)return;try{wakeLock=await navigator.wakeLock.request('screen')}catch(_){}}
+ function stopAll(message){++session;clearTimers();speakActive=false;if(synth){try{synth.cancel()}catch(_){}}releaseWake();phase='idle';if(message)setStatus('中断',message);buttonState();if(question)setCount(cursor,question.c.items)}
+ function speakText(text,cb,runId,onStart){if(!synth||typeof SpeechSynthesisUtterance==='undefined'){stopAll('このブラウザーには音声読み上げ機能がありません');setWarning('SafariまたはChromeで開いてください。');return}
+   const u=new SpeechSynthesisUtterance(text);utter=u;u.lang='ja-JP';u.rate=question?.c.rate||Number($('speed').value);u.pitch=1;u.volume=1;
+   const voiceURI=question?.c.voice||$('voice').value;let v=voices.find(v=>v.voiceURI===voiceURI);if(!v)v=voices.find(v=>v.localService)||voices[0];if(v)u.voice=v;
+   let settled=false;let started=false;let watch=null;
+   function finish(ok,why){if(settled)return;settled=true;if(watch)clearTimeout(watch);if(runId!==session)return;speakActive=false;if(ok){cb?.()}else{stopAll('音声の再生が止まりました');setWarning(why||'音声エンジンでエラーが起きました。音声テスト後に再試行してください。')}}
+   u.onstart=()=>{started=true;if(runId!==session)return;onStart?.(performance.now());};u.onend=()=>finish(true);u.onerror=e=>{if(runId!==session)return;finish(false,'読み上げに失敗しました（'+(e.error||'エラー')+'）。音声テストをお試しください。')};
+   speakActive=true;
+   try{synth.speak(u)}catch(e){finish(false,e.message);return}
+   watch=setTimeout(()=>{if(runId!==session||settled)return;finish(false,started?'読み上げ完了通知が届きませんでした。':'音声が開始できませんでした。再度タップしてください。')},14000);
+ }
+ function startQuestion(repeat){stopAll();if(!repeat||!question)question=generate(getConfig());phase='playing';cursor=0;baseStart=null;delayEvents=[];setWarning('');$('result').className='result';$('result').textContent='';$('answerInput').value='';$('numlist').className='numlist';$('numlist').textContent='';$('showNumbers').textContent='問題を表示';setStatus('出題準備中','実物のそろばんを0にしてください');setCount(0,question.c.items);buttonState();const runId=session;keepAwake();
+   if(question.c.intro){speakText('ごはさんでねがいましては',()=>{timer=setTimeout(()=>sayNumber(0,runId),450)},runId)}else{sayNumber(0,runId)}
+ }
+ function sayNumber(i,runId){if(runId!==session||phase!=='playing')return;cursor=i;const target=(baseStart??performance.now())+i*question.c.interval*1000;setStatus('読み上げ中',`${i+1}口目を読み上げます`);setCount(i,question.c.items);
+   speakText(readOp(question.ops[i],i),()=>{if(runId!==session||phase!=='playing')return;cursor=i+1;setCount(cursor,question.c.items);if(cursor>=question.c.items){endReading(runId);return}const following=cursor;const pause=question.c.timing==='beat'&&baseStart!==null?Math.max(0,baseStart+following*question.c.interval*1000-performance.now()):question.c.interval*1000;timer=setTimeout(()=>sayNumber(following,runId),pause)},runId,(actual)=>{if(i===0)baseStart=actual;else if(question.c.timing==='beat'&&baseStart!==null){const jitter=actual-(baseStart+i*question.c.interval*1000);delayEvents.push(jitter)}})
+ }
+ function endReading(runId){if(runId!==session)return;setStatus('読み上げ終了','最後の合図を再生します');if(question.c.spokenEnd){speakText('では',()=>finish(runId),runId)}else finish(runId)}
+ function finish(runId){if(runId!==session)return;phase='finished';setStatus('読み上げ終了','そろばんの答えを入力してください');buttonState();releaseWake();const max=Math.round(Math.max(0,...delayEvents));if(max>350&&question.c.timing==='beat')setWarning('発声タイミングが最大約'+(max/1000).toFixed(1)+'秒遅れました。端末の音声機能による揺れが発生しています。');}
+ function checkAnswer(){if(phase!=='finished'||!question)return;const raw=$('answerInput').value.trim();if(raw===''){$('answerInput').focus();return}const v=Number(raw);const ok=v===question.sum;$('result').className='result show '+(ok?'good':'bad');$('result').replaceChildren();const title=document.createElement('h3');title.textContent=ok?'正解です！ 御名算。':'もう一度確認してみましょう';const p=document.createElement('p');p.textContent=ok?'次の問題にも挑戦できます。':`正解は ${question.sum.toLocaleString('ja-JP')} です。問題を表示して確認できます。`;$('result').append(title,p);
+   if(ok&&synth&&typeof SpeechSynthesisUtterance!=='undefined'){const runId=session;speakText('ごめいさん',null,runId)} }
+ function showNumbers(){if(!question||phase==='playing')return;const d=$('numlist');if(d.classList.contains('show')){d.classList.remove('show');$('showNumbers').textContent='問題を表示';return}d.replaceChildren();let p=document.createElement('div');p.className='small muted';p.textContent='出題された数字';d.appendChild(p);let row=document.createElement('div');row.className='tokens';for(const [i,v] of question.ops.entries()){let t=document.createElement('span');t.className='token';t.textContent=(i===0?'':v.neg?'−':'+')+v.num;row.appendChild(t)}d.appendChild(row);let sum=document.createElement('p');sum.textContent='正解：'+question.sum.toLocaleString('ja-JP');d.appendChild(sum);d.classList.add('show');$('showNumbers').textContent='問題を隠す'}
+ $('playBtn').addEventListener('click',()=>startQuestion(false));$('stopBtn').addEventListener('click',()=>stopAll('再開するには「出題する」を押してください'));
+ $('repeatBtn').addEventListener('click',()=>startQuestion(true));$('checkBtn').addEventListener('click',checkAnswer);$('answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkAnswer()});$('showNumbers').addEventListener('click',showNumbers);
+ $('voiceTest').addEventListener('click',()=>{if(phase==='playing')return;if(!synth){setWarning('この環境では音声合成が利用できません。');return}++session;try{synth.cancel()}catch(_){};const id=session;setStatus('音声テスト','これから読み上げます');speakText('にじゅうさんえんなり、ひいては、じゅうにえんなり、じゅういちえんなり、くわえて、はちじゅういちえんなり',()=>setStatus('準備完了','音声テストが終わりました'),id)});
+ $('resetSettings').addEventListener('click',()=>{for(const id of elements){const e=$(id),v=settingsDefaults[id];if(e.type==='checkbox')e.checked=v;else e.value=v}$('speed').dispatchEvent(new Event('input'));refreshPreset();saveSettings();});
+ for(const id of elements){$(id).addEventListener('change',()=>{saveSettings();refreshPreset();if(id==='voice')preferredVoice=$('voice').value})}
+ $('speed').addEventListener('input',()=>{$('rateValue').textContent=Number($('speed').value).toFixed(2).replace(/0$/,'')+'倍';saveSettings()});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&phase==='playing'){stopAll('画面が閉じられたため、出題を中断しました。')}});
+ if(synth){try{synth.addEventListener('voiceschanged',refreshVoices)}catch(_){};refreshVoices();setTimeout(refreshVoices,350)}else setWarning('このブラウザーは音声読み上げに対応していないようです。');
+ preferredVoice=loadSettings();refreshVoices();buttonState();renderMeter(Number($('items').value),0);
+})();
+</script>
+</body>
+</html>
