@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#101827">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>そろばん 読上算トレーナー v3</title>
+<title>そろばん 読上算トレーナー v4</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#142034;--panel2:#1b2a40;--line:#304157;--txt:#f0f5fd;--muted:#aabbd1;--teal:#78e2cb;--teal2:#1d877a;--warning:#f7ce84;--bad:#ffa3a3}
 *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;background:radial-gradient(ellipse at 20% 0%,#173448 0%,#0b1220 48%) fixed;color:var(--txt);min-height:100vh;line-height:1.5}
@@ -19,7 +19,7 @@ main{width:min(760px,100%);margin:0 auto;padding:24px 18px 72px}.top{display:fle
 </head>
 <body>
 <main>
- <div class="top"><div class="brand" aria-hidden="true">算</div><div><div class="overline">SOROBAN AUDIO TRAINER · v2</div><h1>読み上げ算トレーナー</h1></div></div>
+ <div class="top"><div class="brand" aria-hidden="true">算</div><div><div class="overline">SOROBAN AUDIO TRAINER · v4</div><h1>読み上げ算トレーナー</h1></div></div>
  <p class="lead">耳で聴いて、実物のそろばんを弾くための練習アプリ。出題中の数字は表示しません。</p>
  <section class="panel hero" aria-label="練習操作">
   <div class="eyebrow" id="presetLabel">2桁 × 10口 · 足し算</div>
@@ -42,16 +42,16 @@ main{width:min(760px,100%);margin:0 auto;padding:24px 18px 72px}.top{display:fle
   <div class="settings">
    <div class="field"><label for="digits">桁数</label><select id="digits"><option value="1">1桁</option><option value="2" selected>2桁</option><option value="3">3桁</option></select></div>
    <div class="field"><label for="items">口数（1〜20口・1口刻み）</label><div class="itemStepper"><button type="button" class="stepButton" id="itemsMinus" aria-label="口数を1口減らす">−</button><input type="number" id="items" min="1" max="20" step="1" value="10" inputmode="numeric" aria-label="口数"><button type="button" class="stepButton" id="itemsPlus" aria-label="口数を1口増やす">＋</button></div></div>
-   <div class="field"><label for="interval">読み始めの間隔</label><select id="interval"><option value="2.4">2.4秒</option><option value="2.8">2.8秒</option><option value="3.2" selected>3.2秒</option><option value="3.6">3.6秒</option><option value="4.0">4.0秒</option><option value="4.5">4.5秒</option><option value="5.0">5.0秒</option><option value="6.0">6.0秒</option></select></div>
+   <div class="field"><label for="interval">読み始めの間隔</label><select id="interval"><option value="1">1秒</option><option value="1.5">1.5秒</option><option value="2">2秒</option><option value="2.4">2.4秒</option><option value="2.8">2.8秒</option><option value="3.2" selected>3.2秒</option><option value="3.6">3.6秒</option><option value="4.0">4.0秒</option><option value="4.5">4.5秒</option><option value="5.0">5.0秒</option><option value="6.0">6.0秒</option><option value="7">7秒</option><option value="8">8秒</option><option value="10">10秒</option><option value="12">12秒</option><option value="15">15秒</option><option value="20">20秒</option><option value="30">30秒</option><option value="45">45秒</option><option value="60">60秒</option></select></div>
    <div class="field"><label for="timing">テンポ方式</label><select id="timing"><option value="beat" selected>一定テンポ</option><option value="gap">読み終わり後の休止</option></select></div>
    <div class="field"><label for="mode">計算</label><select id="mode"><option value="add" selected>足し算のみ</option><option value="mixed">足し算＋引き算</option></select></div>
-   <div class="field"><label for="speed">声の速さ <span id="rateValue">1.0倍</span></label><input type="range" id="speed" min="0.75" max="1.4" step="0.05" value="1"></div>
+   <div class="field"><label for="speed">声の速さ <span id="rateValue">1.0倍</span></label><input type="range" id="speed" min="0.4" max="1.4" step="0.05" value="1"></div>
    <div class="field wide"><label for="voice">日本語の声</label><select id="voice"><option value="">端末の日本語音声を使用</option></select><div class="detail">声の選択肢は端末・ブラウザによって異なります。</div></div>
    <div class="field wide"><div class="inline"><label class="switch"><input id="intro" type="checkbox" checked>「御破算で願いましては」で開始</label><label class="switch"><input id="spokenEnd" type="checkbox" checked>終わりに「では」</label></div></div>
    <div class="field wide"><div class="inline"><button type="button" class="btn ghost" id="voiceTest">🔊 音声テスト</button><button type="button" class="btn ghost" id="resetSettings">初期設定に戻す</button></div></div>
   </div>
   <p class="hint" style="margin:16px 0 0">読み方：各数字の末尾に「円なり」を付けます。加減算は符号が切り替わるときだけ「加えて」「引いては」と読みます。</p>
-  <p class="hint" style="margin:10px 0 0">一定テンポ：数字の読み始めを設定間隔に近づけます。声が長い場合は重ねず、終了を待ちます。<br>休止方式：各数字を読み終えてから設定秒数だけ待ちます。</p>
+  <p class="hint" style="margin:10px 0 0">一定テンポ：数字の読み始めを設定間隔に近づけます。声が長い場合は重ねず、終了を待ちます。<br>休止方式：各数字を読み終えてから設定秒数だけ待ちます。桁数が多いときは休止方式がおすすめです。<br>読み上げ間隔は1〜60秒、声の速さは0.4〜1.4倍で設定できます。声の速度は端末・音声エンジンによって差があります。</p>
  </section>
  <p class="hint">iPhoneのSafariでは「出題する」か「音声テスト」を直接タップしてください。端末の音量を上げ、画面を開いたまま練習してください。音声エンジンによる発声開始のばらつきは完全には取り除けません。</p>
  <div class="footer">端末の日本語音声を使用 · ネット接続・ログイン不要 · 問題は端末内で生成</div>
@@ -95,7 +95,7 @@ main{width:min(760px,100%);margin:0 auto;padding:24px 18px 72px}.top{display:fle
    u.onstart=()=>{started=true;if(runId!==session)return;onStart?.(performance.now());};u.onend=()=>finish(true);u.onerror=e=>{if(runId!==session)return;finish(false,'読み上げに失敗しました（'+(e.error||'エラー')+'）。音声テストをお試しください。')};
    speakActive=true;
    try{synth.speak(u)}catch(e){finish(false,e.message);return}
-   watch=setTimeout(()=>{if(runId!==session||settled)return;finish(false,started?'読み上げ完了通知が届きませんでした。':'音声が開始できませんでした。再度タップしてください。')},14000);
+   watch=setTimeout(()=>{if(runId!==session||settled)return;finish(false,started?'読み上げ完了通知が届きませんでした。':'音声が開始できませんでした。再度タップしてください。')},Math.max(14000, Math.ceil(8000/Math.max(0.4,u.rate))));
  }
  function startQuestion(repeat){stopAll();if(!repeat||!question)question=generate(getConfig());phase='playing';cursor=0;baseStart=null;delayEvents=[];setWarning('');$('result').className='result';$('result').textContent='';$('answerInput').value='';$('numlist').className='numlist';$('numlist').textContent='';$('showNumbers').textContent='問題を表示';setStatus('出題準備中','実物のそろばんを0にしてください');setCount(0,question.c.items);buttonState();const runId=session;keepAwake();
    if(question.c.intro){speakText('ごはさんでねがいましては',()=>{timer=setTimeout(()=>sayNumber(0,runId),450)},runId)}else{sayNumber(0,runId)}
