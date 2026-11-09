@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07",
+  "updated": "2026-11-10",
   "events": [
     {
       "id": "NEVER STOP EXPLORING EXHIBITION｜THE NORTH FACE 60周年展|2026-10-01",
@@ -1712,6 +1712,21 @@
       "note": "2026-10-28初確認。墨田区公式（10/19更新）。実演は14日木版画・市松人形・べっ甲、15日かんざし・医療用鋏等。チラシ持参で抽選回数増、チラシは公式ページPDF。数量・在庫・SNS条件未発表。"
     },
     {
+      "id": "STARBUCKS CHILLED CUP Holiday Cup Arrange｜渋谷無料サンプリング|2026-11-14",
+      "title": "STARBUCKS CHILLED CUP Holiday Cup Arrange｜渋谷無料サンプリング",
+      "short": "STARBUCKS CHILLED CUP Holiday Cup Arrange",
+      "start": "2026-11-14",
+      "end": null,
+      "time": "11:00〜20:00",
+      "place": "OPENBASE SHIBUYA 1F MAIN（渋谷区宇田川町14-13）",
+      "area": "渋谷区",
+      "type": "無料配布",
+      "free": "参加無料・購入不要・事前予約不要。飲料アレンジ無料サンプリングは数量限定、なくなり次第終了。混雑時整理券の可能性。SNS投稿は試飲には不要、指定ハッシュタグ付き写真投稿でオリジナルステッカー1枚。ステッカーも数量限定。1人1回。",
+      "access": "都営バスで渋谷駅方面へ、渋谷駅から徒歩圏（停留所・徒歩分数は要確認）。",
+      "source": "https://enjoystarbuckschilled.jp/holidayevent2026.html",
+      "note": "2026-11-10初確認。18歳未満は保護者同伴。トッピングにアレルゲン・洋酒含有のものあり。公式ページ下部のLINE登録必須キャンペーンは別企画で、本無料イベントの参加条件ではない。"
+    },
+    {
       "id": "イヌマチ in Tokyo 2026｜有明・無料ドッグイベント|2026-11-14",
       "title": "イヌマチ in Tokyo 2026｜有明・無料ドッグイベント",
       "short": "イヌマチ in Tokyo 2026",
@@ -1740,6 +1755,21 @@
       "access": "都営大江戸線「新宿駅」から小田急線に乗換え、世田谷代田駅から徒歩圏（小田急線別運賃）。",
       "source": "https://prtimes.jp/main/html/rd/p/000000701.000030125.html",
       "note": "2026-10-31初確認。共催のマガジンハウス公式発表で11/14・15実施確認。同じ会場の『Hello, Care Work! 展』とは別企画。"
+    },
+    {
+      "id": "環境（エコ）フェスタたいとう2026｜環境体験・展示|2026-11-14",
+      "title": "環境（エコ）フェスタたいとう2026｜環境体験・展示",
+      "short": "環境（エコ）フェスタたいとう2026",
+      "start": "2026-11-14",
+      "end": "2026-11-15",
+      "time": "両日10:00〜16:00",
+      "place": "環境ふれあい館ひまわり・区立精華公園（台東区）",
+      "area": "台東区",
+      "type": "複合",
+      "free": "入場無料・購入不要。手回し発電魚つりゲーム、ミニ水力発電展示、工作など。個別ワークショップの材料費・対象年齢は企画別に要確認。エコフェススタディは小中学生向け、各回12人先着、電子申請制、参加者にプレゼント。",
+      "access": "都営浅草線「蔵前駅」方面から徒歩（正確な出口・所要時間は要確認）。",
+      "source": "https://www.city.taito.lg.jp/kenchiku/kankyo/kankyogakushu/kankyofesta/ecofesta2026.html",
+      "note": "2026-11-09候補発見、2026-11-10公式再確認・初登録。区広報2026-10-20でエコフェススタディの定員・申込方法・プレゼントを確認：[https://www.city.taito.lg.jp/kusei/sanka/koho/koho/reiwa8/081020.files/taito1407\\_3.html](https://www.city.taito.lg.jp/kusei/sanka/koho/koho/reiwa8/081020.files/taito1407_3.html) 。その他体験の予約・配布数・SNS条件は未確認。"
     },
     {
       "id": "ペルソナ４ リバイバル｜池袋店頭無料試遊・グッズ|2026-11-15",
