@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "events": [
     {
       "id": "NEVER STOP EXPLORING EXHIBITION｜THE NORTH FACE 60周年展|2026-10-01",
@@ -1817,6 +1817,21 @@
       "note": "2026-11-04初確認。東京都環境局主催。エコバッグづくり、宇宙探査ロボット操作、ソーラーパネル工作、たねダンゴづくり、マジックショー等。事前予約は抽選・当選者に11/10頃QRコード送付。当日予約もあり。参加年齢・配布景品条件・数量は公式サイトで個別確認。"
     },
     {
+      "id": "CAFÉ LATORY ROOM 2026｜渋谷無料試飲・スイーツ|2026-11-19",
+      "title": "CAFÉ LATORY ROOM 2026｜渋谷無料試飲・スイーツ",
+      "short": "CAFÉ LATORY ROOM 2026",
+      "start": "2026-11-19",
+      "end": "2026-11-22",
+      "time": "10:00〜18:40（最終入場17:40）",
+      "place": "HOTEL EMANON（渋谷区南平台町7-1）",
+      "area": "渋谷区",
+      "type": "無料配布",
+      "free": "参加・試飲・限定ペアリングスイーツ無料、購入不要。事前予約先着制、各日24枠・各回20人。一部当日枠は各日8:00開放。1人期間中1枠。SNSフォロー条件なし。予約空きは未確認。",
+      "access": "都営バスで渋谷駅方面、渋谷駅から徒歩約9分（公式はJR新南口基準）。",
+      "source": "https://agf.ajinomoto.co.jp/news/2026-11-05-2310.html",
+      "note": "2026-11-12初登録。味の素AGF公式発表。17種から1杯を選択、会場限定ペアリングスイーツと限定コンテンツ。約60分。予約URL [https://cloud-pass.jp/entry/r/cafelatoryroom-2026](https://cloud-pass.jp/entry/r/cafelatoryroom-2026) 。アレルギーはスタッフへ。予約枠は開始15分前まで、満了次第終了。"
+    },
+    {
       "id": "Tokyo Beauty Week 2026｜Beauty Brands無料体験|2026-11-19",
       "title": "Tokyo Beauty Week 2026｜Beauty Brands無料体験",
       "short": "美容ブランド無料体験",
@@ -1860,6 +1875,21 @@
       "access": "都営新宿線「新宿三丁目駅」から徒歩約5〜7分。",
       "source": "https://enjoy-its-from-europe.campaign.europa.eu/japan/ja/news-events/konoqiueufutotoratsukuteyorotsuhanoweiwotiyanshiyou",
       "note": "2026-10-24初確認。EU公式一次情報。11/21〜23（祝日含む）開催。"
+    },
+    {
+      "id": "PLAYGROUND CITY SHIBUYA with Pokémon｜無料スポーツ・ラリー|2026-11-21",
+      "title": "PLAYGROUND CITY SHIBUYA with Pokémon｜無料スポーツ・ラリー",
+      "short": "PLAYGROUND CITY SHIBUYA ",
+      "start": "2026-11-21",
+      "end": "2026-11-22",
+      "time": "9:00〜16:00（ラリー冊子配布15:00まで・なくなり次第終了、シール受取16:30頃まで）",
+      "place": "代々木公園（渋谷区代々木神園町2-1）、代々木公園BE STAGE（神南1-1-1）、北谷公園ほか",
+      "area": "渋谷区",
+      "type": "複合",
+      "free": "参加無料・購入不要。3歳以上対象、小学生以下は保護者同伴。8種スポーツのジムチャレンジは事前抽選（11/11締切済）または当日抽選。ポケモン探しラリーは予約不要。冊子・記念シールは配布数・期限に制約。SNSフォロー・会員登録条件の記載なし。",
+      "access": "都営バス「原宿駅前」などから代々木公園方面へ徒歩。正確な停留所別徒歩時間は要確認。",
+      "source": "https://playgroundcity-shibuya.jp/",
+      "note": "2026-11-12初登録。主催渋谷未来デザイン・渋谷区・株式会社ポケモン共催。街のポケモンを探すラリー、8種スポーツ体験。雨天決行・荒天中止。筆記用具持参推奨。事前抽選締切後も当日抽選あり。"
     },
     {
       "id": "ペルソナ４ リバイバル｜秋葉原店頭無料試遊・グッズ|2026-11-21",
