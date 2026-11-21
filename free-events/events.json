@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "events": [
     {
       "id": "NEVER STOP EXPLORING EXHIBITION｜THE NORTH FACE 60周年展|2026-10-01",
@@ -2205,6 +2205,36 @@
       "access": "都営大江戸線「都庁前駅」直結。",
       "source": "https://www.zaimu.metro.tokyo.lg.jp/information/topics/r8/pickleball",
       "note": "2026-10-22確認。対象日2026-11-29。公式の実施日は10/4・11・12・18・25、11/1・2・3・8・22・23・29の計12日（過去日を除く8日分を個別登録）。指導体験は期間中1人1回まで。動きやすい服・靴推奨。小学生以下保護者同伴。雨天時変更・中止の可能性。景品の内容・在庫未公表。"
+    },
+    {
+      "id": "TOKYO BEACH REFLECTIONS｜大みそか無料光の祭典|2026-12-31",
+      "title": "TOKYO BEACH REFLECTIONS｜大みそか無料光の祭典",
+      "short": "TOKYO BEACH REFLECTIONS",
+      "start": "2026-12-31",
+      "end": null,
+      "time": "17:30開場〜21:15終了（18:00開始）",
+      "place": "お台場海浜公園 砂浜エリア（港区台場）",
+      "area": "港区",
+      "type": "複合",
+      "free": "参加無料・購入不要。事前応募で優先入場チケット抽選（定員4,500人、11/20〜12/10受付）。当日空きがあればチケットなし入場可。飲食有料。SNS条件の記載なし。",
+      "access": "都営交通でお台場方面に接続可否確認。最寄りはゆりかもめ『お台場海浜公園』、りんかい線『東京テレポート』（別運賃）。",
+      "source": "https://prtimes.jp/main/html/rd/p/000000001.000194325.html",
+      "note": "2026-11-22確認。主催：東京ナイトタイム推進プロジェクト実行委員会。プロジェクションマッピング、体験型光のアート、花火。カウントダウン本編とは別チケット・完全入替。応募：[https://tokyo-nighttime-project.jp/entry.html](https://tokyo-nighttime-project.jp/entry.html)"
+    },
+    {
+      "id": "TOKYO NEW YEAR’S EVE ’26/27｜お台場無料カウントダウン|2026-12-31",
+      "title": "TOKYO NEW YEAR’S EVE ’26/27｜お台場無料カウントダウン",
+      "short": "TOKYO NEW YEAR’S EVE ’26/",
+      "start": "2026-12-31",
+      "end": null,
+      "time": "22:15開場〜翌0:10終了（メイン23:30〜）",
+      "place": "お台場海浜公園（港区台場）",
+      "area": "港区",
+      "type": "大道芸・観覧",
+      "free": "参加無料・購入不要。事前応募必須、定員6,000人、応募多数の場合抽選。応募11/20〜12/10。当選者の入場チケット必須、当日券なし。SNS条件は公式発表に記載なし。飲食有料。",
+      "access": "都営交通利用なら都営バスでお台場方面への接続を検討。会場最寄りはゆりかもめ『お台場海浜公園』『台場』、りんかい線『東京テレポート』（別運賃）。大晦日深夜の運行要確認。",
+      "source": "https://prtimes.jp/main/html/rd/p/000000001.000194325.html",
+      "note": "2026-11-22確認。主催：東京ナイトタイム推進プロジェクト実行委員会。新しい学校のリーダーズ出演、初音ミク・ハローキティのドローン、花火、噴水。プレイベントとは別チケット。応募：[https://tokyo-nighttime-project.jp/entry.html。夜間の帰路交通要確認。](https://tokyo-nighttime-project.jp/entry.html%E3%80%82%E5%A4%9C%E9%96%93%E3%81%AE%E5%B8%B0%E8%B7%AF%E4%BA%A4%E9%80%9A%E8%A6%81%E7%A2%BA%E8%AA%8D%E3%80%82)"
     }
   ]
 }
